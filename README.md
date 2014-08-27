@@ -17,11 +17,11 @@ The backup file will be pulled from your router and saved according to the path 
 
 Features to be added
 ----------------------------
-I plan on adding these features:
--prompt to ask the user for password (for those who don't want to hardcode their passwords)
--check if file already exists
--handle file exists issues
--inform the user of a successful run or error
+I plan on adding these features:  
+-prompt to ask the user for password (for those who don't want to hardcode their passwords)  
+-check if file already exists  
+-handle file exists issues  
+-inform the user of a successful run or error  
 
 
 Dependencies
@@ -31,5 +31,5 @@ For encoding base64 I used the apache commons codec library, which I already inc
 
 Used resources
 ----------------------------
-http://stackoverflow.com/questions/469695/decode-base64-data-in-java
+http://stackoverflow.com/questions/469695/decode-base64-data-in-java  
 http://stackoverflow.com/questions/921262/how-to-download-and-save-a-file-from-internet-using-java
