@@ -9,15 +9,13 @@ import java.net.URL;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 
-//	http://stackoverflow.com/questions/469695/decode-base64-data-in-java
-//	http://stackoverflow.com/questions/921262/how-to-download-and-save-a-file-from-internet-using-java
-public class HttpBasicAuth {
+public class HttpBasicAuth { 
 
-    public void getBackupFile(String sourceURL, String HTTPuser, String HTTPpassword, String filePath, String fileName, String fileExt, String fileDate) throws IOException{
+    public boolean getBackupFile(String sourceURL, String HTTPuser, String HTTPpassword, String filePath, String fileName, String fileExt, String fileDate) throws IOException{
 
     	FileOutputStream fout = null;
+    	boolean success = false;
         
-        try {
             URL url = new URL (sourceURL);
             
             String encoding = Base64.encodeBase64String(StringUtils.getBytesUtf8(HTTPuser+":"+HTTPpassword));
@@ -28,7 +26,7 @@ public class HttpBasicAuth {
             connection.setRequestProperty  ("Authorization", "Basic " + encoding);
             InputStream content = (InputStream)connection.getInputStream();
             
-//            generate output file
+            //generate output file
             fout = new FileOutputStream(filePath+fileName+fileDate+fileExt);
 
             final byte data[] = new byte[1024];
@@ -37,14 +35,13 @@ public class HttpBasicAuth {
                 fout.write(data, 0, count);
             }
             
-	        } catch(Exception e) {
-	            e.printStackTrace();
-	        }finally {
-	            if (fout != null) {
-	                fout.close();
-	            }
-	        }
+            if (fout != null) {
+                fout.close();
+                success = true;
+            }
             
-    }
+            return success;
+            
+    }//end getBackupFile()
 
-}
+}//end class

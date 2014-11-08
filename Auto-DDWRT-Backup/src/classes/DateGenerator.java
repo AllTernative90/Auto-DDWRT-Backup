@@ -6,7 +6,7 @@ import java.util.Date;
 
 //used in HttpBasicAuth to generate the current date for use in fileName
 //returns a String Array with 3 fields: year, month, day
-public class DateGenerator {
+public class DateGenerator { 
 
 	public String[] generateDate(){
 		
