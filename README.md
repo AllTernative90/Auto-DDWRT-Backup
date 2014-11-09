@@ -13,7 +13,8 @@ How to use
 3. enter router settings and the path to save the backup to
 4. hit the "backup now" button
 
-The backup file will be pulled from your router and saved according to the path in ISettings.java.
+The backup file will be pulled from your router and saved according to parameters you specified.If you wish to save your settings, you can hit "save preset". This will create a properties file in the directory the .jar (this program) is in. On starting the Auto-DDWRT-Backup the program will look for this properties file. If not present, it will start with default settings.
+I advise to **not** save your password in the properties file, because it is stored in plaintext.
 
 You can obviously compile it yourself if you wish.
 
