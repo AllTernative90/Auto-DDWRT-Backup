@@ -7,6 +7,15 @@ import java.util.Properties;
 
 public class Controller{
 
+	static GUI gui;
+	
+	static String ipAddress = "";
+	static String user = "";
+	static String password = "";
+	static String filepath = "";
+	static String filename = "";
+	static String includeDate = "";
+	
 	public static void main(String[] args) {
 		
 		//create the GUI
@@ -18,7 +27,7 @@ public class Controller{
 	//create a GUI element, check if a properties file exists and update the GUI with those values
 	public static void createGUI(){
 		
-		GUI gui = new GUI();
+		gui = new GUI();
     	gui.setVisible(true);
     	
     	//check if a properties file exists and load its values
@@ -41,20 +50,26 @@ public class Controller{
     	}
     	
     	//add the listeners to the buttons
-    	addListeners(gui);
+    	addListeners();
     	
 	}
+	
+	
+	public static void getParametersFromGUI(){
+		ipAddress = gui.textField_IP.getText();
+		user = gui.textField_User.getText();
+		password = gui.passwordField.getText();
+		filepath = gui.textField_Filepath.getText();
+		filename = gui.textField_Filename.getText();
+		includeDate = ""+ gui.chckbx_Date.isSelected();
+	}
+	
 
 	//write the parameters set in the GUI to file
-	public static void writeProperties(GUI gui){
+	public static void writeProperties(){
 		
 		//get parameters from GUI
-		String ipAddress = gui.textField_IP.getText();
-		String user = gui.textField_User.getText();
-		String password = gui.passwordField.getText();
-		String filepath = gui.textField_Filepath.getText();
-		String filename = gui.textField_Filename.getText();
-		String includeDate = ""+ gui.chckbx_Date.isSelected();
+		getParametersFromGUI();
 		
 		//write the file
 		if(PropertiesHandler.writePropertiesFile(ipAddress, user, password, filepath, filename, includeDate)){
@@ -65,17 +80,13 @@ public class Controller{
 	
 	
 	//backup the router config file 
-	public static void backup(GUI gui){
+	public static void backup(){
 		
     	String fileDate = "";
     	String fileExt  = ".bin";
     	
     	//get parameters from GUI
-    	String ipAddress = gui.textField_IP.getText();
-		String user = gui.textField_User.getText();
-		String password = gui.passwordField.getText();
-		String filepath = gui.textField_Filepath.getText();
-		String filename = gui.textField_Filename.getText();
+    	getParametersFromGUI();
 		
 		
 		//check if the path ends with "/" or "\" - if not, display a Popup
@@ -104,15 +115,15 @@ public class Controller{
 	
 	
 	//add listeners to the buttons
-	public static void addListeners(final GUI gui){
+	public static void addListeners(){
     	gui.addActionListeners(new ActionListener() {
 		       public void actionPerformed(ActionEvent btn_Preset) {
-		    	   writeProperties(gui);
+		    	   writeProperties();
 		       }
 		   },
 		   new ActionListener() {
 		       public void actionPerformed(ActionEvent btn_BackupNow) {
-		    	   backup(gui);
+		    	   backup();
 		       }
 		   });
     	}
