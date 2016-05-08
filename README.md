@@ -1,4 +1,4 @@
-Auto-DDWRT-Backup
+Auto-DDWRT-Backup - DISCONTINUED
 =================
 
 This program connects through http with your DD-WRT router using credentials you provide.
